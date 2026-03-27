@@ -44,7 +44,7 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
 .pills{display:flex;flex-wrap:wrap;gap:.3rem}
 .pill{font-size:.66rem;font-family:'JetBrains Mono',monospace;padding:.18rem .55rem;border-radius:4px;border:1px solid #e8e8e4;color:#555;background:#fafaf8}
 
-/* ─── Projects ─── */
+/* ─── Projects & Activities ─── */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.5rem}
 .proj-card{background:#fff;border-radius:12px;border:1px solid #e8e8e4;padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .15s}
 .proj-card:hover{border-color:#c0c0bb;box-shadow:0 4px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
@@ -94,7 +94,7 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
 .modal-close{width:30px;height:30px;border-radius:7px;border:1px solid #e8e8e4;background:#fafaf8;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:#888;flex-shrink:0;transition:background .15s,color .15s}
 .modal-close:hover{background:#f0f0ec;color:#1c1c1c}
 .modal-preview{width:100%;background:#f5f5f2;position:relative;overflow:hidden}
-.modal-preview img{width:100%;display:block;object-fit:contain;max-height:380px}
+.modal-preview img, .modal-preview video {width:100%;display:block;object-fit:contain;max-height:380px}
 .preview-placeholder{width:100%;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#bbb}
 .preview-placeholder span{font-size:.72rem;font-family:'JetBrains Mono',monospace}
 .modal-body{padding:1.25rem 1.5rem}
@@ -130,8 +130,10 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
 
   <div class="tab-pane active" id="tab-portfolio">
 
-    <div class="hero">
-      <div class="avatar">TY</div>
+   <div class="hero">
+      <div class="avatar" style="overflow: hidden;">
+        <img src="my.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="profile">
+      </div>
       <div>
         <div class="hero-name">TOEY</div>
         <div class="hero-sub">web · iot · mobile</div>
@@ -177,6 +179,33 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
         <div class="proj-arrow">ดูเพิ่มเติม →</div>
       </div>
     </div>
+
+    <div class="sec-label">กิจกรรม</div>
+    <div class="proj-grid">
+      <div class="proj-card" onclick="openProjModal('act1')">
+        <span class="proj-type pt1">Activity</span>
+        <div class="proj-name">กิจกรรมรับน้อง</div>
+        <div class="proj-desc">เข้าร่วมกิจกรรมรับน้องเพื่อสร้างความสัมพันธ์อันดีและเรียนรู้การทำงานเป็นทีม</div>
+        <div class="proj-stack"><span class="ptag">Teamwork</span><span class="ptag">Communication</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+      
+      <div class="proj-card" onclick="openProjModal('act2')">
+        <span class="proj-type pt2">Field Trip</span>
+        <div class="proj-name">ศึกษาดูงาน บริษัทอินเทอร์เน็ตฯ</div>
+        <div class="proj-desc">เข้าศึกษาดูงานระบบเครือข่ายและการจัดการโครงสร้างพื้นฐาน ที่ จ.ลพบุรี</div>
+        <div class="proj-stack"><span class="ptag">Networking</span><span class="ptag">Infrastructure</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+
+      <div class="proj-card" onclick="openProjModal('act3')">
+        <span class="proj-type pt3">Visit</span>
+        <div class="proj-name">เข้าชม ซาฮิร่าฟาร์ม</div>
+        <div class="proj-desc">ทัศนศึกษาและเรียนรู้ระบบการจัดการฟาร์มเชิงเกษตรและเทคโนโลยีที่ซาฮิร่าฟาร์ม</div>
+        <div class="proj-stack"><span class="ptag">Agriculture</span><span class="ptag">Technology</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+    </div>
     
     <div class="sec-label">ทักษะ</div>
     <div class="skills-card">
@@ -190,7 +219,7 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
       </div>
       <div class="sk-row">
         <div class="sk-name">Mobile</div>
-        <div class="pills"><span class="pill">Flutter</span><span class="pill">Firebase RTDB</span><span class="pill">Telegram Bot</span><span class="pill">LINE Notify</span></div>
+        <div class="pills"><span class="pill">Flutter</span><span class="pill">Firebase RTDB</span></div>
       </div>
     </div>
 
@@ -267,7 +296,7 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
     <div class="modal-preview" id="pm-preview"></div>
     <div class="modal-body">
       <p class="modal-desc" id="pm-desc"></p>
-      <div class="modal-stack-label">tech stack</div>
+      <div class="modal-stack-label">tags / tech stack</div>
       <div class="modal-stack" id="pm-stack"></div>
       <div class="modal-actions" id="pm-actions"></div>
     </div>
@@ -298,8 +327,9 @@ function switchTab(name, btn) {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-/* ─── Projects ─── */
+/* ─── Projects & Activities Data ─── */
 const projects = {
+  // --- Projects ---
   MeowBeautyShop: {
     badge:'Flutter', bc:'pt2',
     title:'Meow Beauty Shop',
@@ -316,22 +346,48 @@ const projects = {
     demo: 'https://startling-cassata-fb706e.netlify.app/', 
     img: 'adminapp.png' 
   },
-  // ข้อมูลที่เพิ่มใหม่: Cosmetic Vending Machine
   CosmeticVending: {
     badge:'Kiosk App', bc:'pt2',
     title:'Cosmetic Vending Machine',
     desc:'ระบบหน้าจอ Kiosk สำหรับตู้กดเครื่องสำอาง (Meow Beauty) มีระบบจัดการตะกร้าสินค้า ระบบสมาชิกเพื่อสะสมและแลกแต้ม ระบบชำระเงิน (สแกน QR Code / เงินสด) พร้อมแอนิเมชันจำลองการตกของสินค้าในตู้',
     stack:['Flutter', 'Dart', 'Animation'],
     demo: 'https://lively-smakager-4821cb.netlify.app/', 
-    img: 'Cosmetic-vending.png' // หากมีรูปให้ใส่ชื่อไฟล์ตรงนี้ได้เลยครับ เช่น 'vending.jpg'
+    img: 'Cosmetic-vending.png'
   },
   smartparking: {
     badge:'IoT + WEB', bc:'pt1',
     title:'Smart parking',
-    desc:'ระบบบริหารจัดการที่จอดรถอัจฉริยะที่ใช้เซนเซอร์ตรวจจับยานพาหนะ และส่งข้อมูลสถานะไปยังฐานข้อมูลคลาวด์ เพื่อให้ผู้ใช้งานสามารถตรวจสอบที่จอดรถว่างได้ทันทีผ่านเว็บแอปพลิเคชัน',
+    desc:'ระบบบริหารจัดการที่จอดรถอัจฉริยะที่ใช้เซนเซอร์ตรวจจับยานพาหนะ และส่งข้อมูลสถานะไปยังฐานข้อมูลคลาวด์ เพื่อให้ผู้ใช้งานสามารถตรวจสอบที่จอดรถว่างได้ทันทีผ่านเว็บ',
     stack:['ESP32','HTML','Firebase RTDB'],
     demo: 'https://parking-system-ecru.vercel.app/',
-    img: 'parking.jpg'
+    img: 'parking.jpg',
+    video: 'parking.mp4' // แก้คำผิดจาก parkking ให้ตรงกับไฟล์
+  },
+  
+  // --- Activities ---
+  act1: {
+    badge:'Activity', bc:'pt1',
+    title:'กิจกรรมรับน้อง',
+    desc:'เข้าร่วมกิจกรรมรับน้องเพื่อสร้างความสัมพันธ์อันดีระหว่างรุ่นพี่และรุ่นน้อง รวมถึงเรียนรู้การทำงานเป็นทีม การสื่อสาร และการปรับตัวในรั้วมหาวิทยาลัย',
+    stack:['Teamwork', 'Communication'],
+    demo: '', 
+    img: 'รับน้อง.jpg' // 👈 ใส่ชื่อไฟล์รูปกิจกรรมรับน้องตรงนี้ (เช่น 'activity1.jpg')
+  },
+  act2: {
+    badge:'Field Trip', bc:'pt2',
+    title:'ศึกษาดูงาน บริษัทอินเทอร์เน็ต จังหวัดลพบุรี',
+    desc:'เข้าศึกษาดูงานระบบเครือข่าย (Networking) และการจัดการโครงสร้างพื้นฐานทางเทคโนโลยี ที่บริษัทอินเทอร์เน็ต จังหวัดลพบุรี เพื่อเพิ่มพูนประสบการณ์และเห็นการทำงานจริงในระดับองค์กร',
+    stack:['Networking', 'Infrastructure', 'Observation'],
+    demo: '', 
+    img: 'network.jpg' // 👈 ใส่ชื่อไฟล์รูปดูงานตรงนี้
+  },
+  act3: {
+    badge:'Visit', bc:'pt3',
+    title:'เข้าชม ซาฮิร่าฟาร์ม',
+    desc:'ทัศนศึกษาและเรียนรู้ระบบการจัดการฟาร์ม นวัตกรรมเชิงเกษตร และการนำระบบiotมาประยุกต์ใช้ที่ ซาฮิร่าฟาร์ม',
+    stack:['Agriculture', 'Technology'],
+    demo: '', 
+    img: 'sahara.jpg' // 👈 ใส่ชื่อไฟล์รูปซาฮิร่าฟาร์มตรงนี้
   }
 };
 
@@ -347,15 +403,19 @@ function openProjModal(id) {
   document.getElementById('pm-stack').innerHTML = p.stack.map(s=>`<span class="ptag">${s}</span>`).join('');
   const prev = document.getElementById('pm-preview');
   
-  // ตรวจสอบว่าถ้าไม่มีรูป ให้โชว์ placeholder
-  prev.innerHTML = p.img
-    ? `<img src="${p.img}" alt="${p.title}">`
-    : `<div class="preview-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg><span>ยังไม่มีรูป / screenshot</span></div>`;
+  // เช็กเงื่อนไข: วิดีโอ > รูปภาพ > ไม่มีอะไรเลย
+  if (p.video) {
+    // โค้ดที่แก้ให้วิดีโอมีปุ่มเลื่อนเวลาและแสดงผลได้ชัวร์ๆ
+    prev.innerHTML = `<video src="${p.video}" controls playsinline preload="metadata" style="width: 100%; max-height: 420px; outline: none; background-color: #000;"></video>`;
+  } else if (p.img) {
+    prev.innerHTML = `<img src="${p.img}" alt="${p.title}">`;
+  } else {
+    prev.innerHTML = `<div class="preview-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg><span>ยังไม่มีรูป / screenshot</span></div>`;
+  }
   
-  // ตรวจสอบลิงก์ Demo
   document.getElementById('pm-actions').innerHTML = p.demo
     ? `<a href="${p.demo}" target="_blank" rel="noopener" class="btn-demo"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>เปิด Demo</a>`
-    : `<span class="btn-placeholder">Demo ยังไม่พร้อม</span>`;
+    : ``; // ถ้าเป็นกิจกรรม (ไม่มีลิงก์ demo) ก็ไม่ต้องแสดงปุ่มนี้
     
   openOverlay('proj-overlay');
 }
@@ -396,8 +456,20 @@ function openCertModal(id) {
   openOverlay('cert-overlay');
 }
 
-function openOverlay(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function openOverlay(id){ 
+  document.getElementById(id).classList.add('open'); 
+  document.body.style.overflow='hidden'; 
+}
+
+function closeModal(id) { 
+  document.getElementById(id).classList.remove('open'); 
+  document.body.style.overflow=''; 
+  // เคลียร์ข้อมูลใน Modal เผื่อมีวิดีโอเล่นอยู่ จะได้หยุด
+  if(id === 'proj-overlay') {
+    document.getElementById('pm-preview').innerHTML = '';
+  }
+}
+
 function handleOverlay(e,id){ if(e.target===document.getElementById(id)) closeModal(id); }
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal('proj-overlay'); closeModal('cert-overlay'); } });
 </script>
