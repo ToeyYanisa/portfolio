@@ -152,7 +152,16 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
         <div class="proj-stack"><span class="ptag">Firebase Auth</span><span class="ptag">Firestore</span><span class="ptag">Flutter</span></div>
         <div class="proj-arrow">ดูเพิ่มเติม →</div>
       </div>
-       <div class="proj-card" onclick="openProjModal('smartparking')">
+      
+      <div class="proj-card" onclick="openProjModal('AdminMeowApp')">
+        <span class="proj-type pt3">Mobile</span>
+        <div class="proj-name">Admin Meow App</div>
+        <div class="proj-desc">ระบบแอดมินเชื่อมต่อกับ Meow Beauty Shop แก้ไขคูปอง แบนเนอร์ สต็อก และสินค้า</div>
+        <div class="proj-stack"><span class="ptag">Flutter</span><span class="ptag">Firestore</span><span class="ptag">Firebase</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+
+      <div class="proj-card" onclick="openProjModal('smartparking')">
         <span class="proj-type pt1">iot</span>
         <div class="proj-name">smartparking</div>
         <div class="proj-desc">ที่จอดรถอัจฉริยะ</div>
@@ -180,8 +189,8 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
     <div class="sec-label">ติดต่อ</div>
     <div class="contact-card">
       <div class="c-row"><div class="c-icon">GH</div><span class="c-label">GitHub</span><a href="https://github.com/ToeyYanisa" target="_blank" class="c-val">github.com/ToeyYanisa</a></div>
-      <div class="c-row"><div class="c-icon">@</div><span class="c-label">Email</span><a href="toeyynss@gmail.com" class="c-val">toeyynss@gmail.com</a></div>
-      <div class="c-row"><div class="c-icon">P</div><span class="c-label">Phone</span><a href="0858463979" target="_blank" class="c-val">0858463979</a></div>
+      <div class="c-row"><div class="c-icon">@</div><span class="c-label">Email</span><a href="mailto:toeyynss@gmail.com" class="c-val">toeyynss@gmail.com</a></div>
+      <div class="c-row"><div class="c-icon">P</div><span class="c-label">Phone</span><a href="tel:0858463979" target="_blank" class="c-val">0858463979</a></div>
     </div>
 
   </div>
@@ -239,7 +248,9 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
 
   </div>
 
-</div><div class="modal-overlay" id="proj-overlay" onclick="handleOverlay(event,'proj-overlay')">
+</div>
+
+<div class="modal-overlay" id="proj-overlay" onclick="handleOverlay(event,'proj-overlay')">
   <div class="modal">
     <div class="modal-header">
       <div><div class="modal-badge" id="pm-badge"></div><div class="modal-title" id="pm-title"></div></div>
@@ -289,6 +300,15 @@ const projects = {
     demo: 'https://meaow-app.web.app/', 
     img: 'meow1.png' 
   },
+  // เพิ่มโปรเจกต์ Admin App ตรงนี้
+  AdminMeowApp: {
+    badge:'Flutter', bc:'pt3',
+    title:'Admin Meow Beauty Shop',
+    desc:'ระบบ Admin App พัฒนาด้วย Flutter เชื่อมต่อข้อมูลกับ Meow Beauty Shop สำหรับจัดการหลังบ้าน เช่น แก้ไขข้อมูลคูปอง, อัปเดตแบนเนอร์, จัดการสต็อกสินค้า และรายชื่อสินค้า',
+    stack:['Flutter', 'Firebase Auth', 'Firestore'],
+    demo: '', // ใส่ลิงก์ Demo ของแอพแอดมิน (ถ้ามี)
+    img: 'adminapp.png' // ใส่ชื่อไฟล์ภาพ (ถ้ามี) เช่น 'admin_app.jpg'
+  },
   smartparking: {
     badge:'IoT + WEB', bc:'pt1',
     title:'Smart parking',
@@ -310,12 +330,17 @@ function openProjModal(id) {
   document.getElementById('pm-desc').textContent = p.desc;
   document.getElementById('pm-stack').innerHTML = p.stack.map(s=>`<span class="ptag">${s}</span>`).join('');
   const prev = document.getElementById('pm-preview');
+  
+  // ตรวจสอบว่าถ้าไม่มีรูป ให้โชว์ placeholder
   prev.innerHTML = p.img
     ? `<img src="${p.img}" alt="${p.title}">`
     : `<div class="preview-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg><span>ยังไม่มีรูป / screenshot</span></div>`;
+  
+  // ตรวจสอบลิงก์ Demo
   document.getElementById('pm-actions').innerHTML = p.demo
     ? `<a href="${p.demo}" target="_blank" rel="noopener" class="btn-demo"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>เปิด Demo</a>`
     : `<span class="btn-placeholder">Demo ยังไม่พร้อม</span>`;
+    
   openOverlay('proj-overlay');
 }
 
