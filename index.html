@@ -161,10 +161,18 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1
         <div class="proj-arrow">ดูเพิ่มเติม →</div>
       </div>
 
+      <div class="proj-card" onclick="openProjModal('CosmeticVending')">
+        <span class="proj-type pt2">Kiosk</span>
+        <div class="proj-name">Cosmetic Vending Machine</div>
+        <div class="proj-desc">ระบบหน้าจอสำหรับตู้กดเครื่องสำอาง มีระบบสมาชิกสะสมแต้ม ชำระเงินด้วย QR Code พร้อมแอนิเมชันรับสินค้า</div>
+        <div class="proj-stack"><span class="ptag">Flutter</span><span class="ptag">Dart</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+
       <div class="proj-card" onclick="openProjModal('smartparking')">
         <span class="proj-type pt1">iot</span>
         <div class="proj-name">smartparking</div>
-        <div class="proj-desc">ที่จอดรถอัจฉริยะ</div>
+        <div class="proj-desc">ระบบเช็คที่จอดรถว่างแบบ Real-time ด้วย IoT และ Cloud Computing ช่วยลดเวลาวนหาที่จอดรถอย่างมีประสิทธิภาพ</div>
         <div class="proj-stack"><span class="ptag">Firebase Auth</span><span class="ptag">Firestore</span><span class="ptag">HTML</span></div>
         <div class="proj-arrow">ดูเพิ่มเติม →</div>
       </div>
@@ -300,19 +308,27 @@ const projects = {
     demo: 'https://meaow-app.web.app/', 
     img: 'meow1.png' 
   },
-  // เพิ่มโปรเจกต์ Admin App ตรงนี้
   AdminMeowApp: {
     badge:'Flutter', bc:'pt3',
     title:'Admin Meow Beauty Shop',
     desc:'ระบบ Admin App พัฒนาด้วย Flutter เชื่อมต่อข้อมูลกับ Meow Beauty Shop สำหรับจัดการหลังบ้าน เช่น แก้ไขข้อมูลคูปอง, อัปเดตแบนเนอร์, จัดการสต็อกสินค้า และรายชื่อสินค้า',
     stack:['Flutter', 'Firebase Auth', 'Firestore'],
-    demo: '', // ใส่ลิงก์ Demo ของแอพแอดมิน (ถ้ามี)
-    img: 'adminapp.png' // ใส่ชื่อไฟล์ภาพ (ถ้ามี) เช่น 'admin_app.jpg'
+    demo: 'https://startling-cassata-fb706e.netlify.app/', 
+    img: 'adminapp.png' 
+  },
+  // ข้อมูลที่เพิ่มใหม่: Cosmetic Vending Machine
+  CosmeticVending: {
+    badge:'Kiosk App', bc:'pt2',
+    title:'Cosmetic Vending Machine',
+    desc:'ระบบหน้าจอ Kiosk สำหรับตู้กดเครื่องสำอาง (Meow Beauty) มีระบบจัดการตะกร้าสินค้า ระบบสมาชิกเพื่อสะสมและแลกแต้ม ระบบชำระเงิน (สแกน QR Code / เงินสด) พร้อมแอนิเมชันจำลองการตกของสินค้าในตู้',
+    stack:['Flutter', 'Dart', 'Animation'],
+    demo: 'https://lively-smakager-4821cb.netlify.app/', 
+    img: 'Cosmetic-vending.png' // หากมีรูปให้ใส่ชื่อไฟล์ตรงนี้ได้เลยครับ เช่น 'vending.jpg'
   },
   smartparking: {
     badge:'IoT + WEB', bc:'pt1',
     title:'Smart parking',
-    desc:'ระบบ Smart parking ด้วย ESP32 ตรวจจับรถเข้าออกและแสดงผลผ่าน เว็บแบบrealtime',
+    desc:'ระบบบริหารจัดการที่จอดรถอัจฉริยะที่ใช้เซนเซอร์ตรวจจับยานพาหนะ และส่งข้อมูลสถานะไปยังฐานข้อมูลคลาวด์ เพื่อให้ผู้ใช้งานสามารถตรวจสอบที่จอดรถว่างได้ทันทีผ่านเว็บแอปพลิเคชัน',
     stack:['ESP32','HTML','Firebase RTDB'],
     demo: 'https://parking-system-ecru.vercel.app/',
     img: 'parking.jpg'
