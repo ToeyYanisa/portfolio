@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEY — Portfolio</title>
+<meta name="description" content="Portfolio ของ Toey - นักพัฒนา Web และ Mobile App">
+<meta property="og:title" content="TOEY — Portfolio">
+<meta property="og:description" content="นักพัฒนา Web, IoT และ Mobile App">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter','Noto Sans Thai',sans-serif;background:#f7f7f5;color:#1c1c1c;font-weight:400}
+.page{max-width:640px;margin:0 auto;padding:0 2rem 5rem}
+
+/* ─── Tab Nav ─── */
+.tab-nav{position:sticky;top:0;z-index:50;background:#f7f7f5;padding:1rem 0 0;margin-bottom:1.5rem}
+.tab-inner{display:flex;gap:.3rem;background:#fff;border:1px solid #e8e8e4;border-radius:10px;padding:.3rem}
+.tab-btn{flex:1;font-size:.72rem;font-family:'JetBrains Mono',monospace;padding:.55rem 1rem;border-radius:7px;border:none;background:transparent;color:#999;cursor:pointer;transition:background .15s,color .15s;letter-spacing:.02em}
+.tab-btn.active{background:#1c1c1c;color:#fff}
+.tab-btn:not(.active):hover{background:#f5f5f2;color:#555}
+
+/* ─── Hero ─── */
+.hero{background:#fff;border-radius:14px;border:1px solid #e8e8e4;padding:2rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1.5rem}
+.avatar{width:64px;height:64px;border-radius:12px;background:#1c1c1c;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:500;color:#fff;flex-shrink:0;letter-spacing:-.02em}
+.hero-name{font-size:1.4rem;font-weight:500;letter-spacing:-.03em;margin-bottom:.2rem}
+.hero-sub{font-size:.78rem;color:#999;font-family:'JetBrains Mono',monospace;margin-bottom:.85rem}
+.tag-row{display:flex;gap:.4rem;flex-wrap:wrap}
+.tag{font-size:.65rem;font-family:'JetBrains Mono',monospace;padding:.2rem .65rem;border-radius:4px;font-weight:400}
+.t1{background:#fff0f0;color:#b91c1c}
+.t2{background:#f0f9ff;color:#0369a1}
+.t3{background:#f0fdf4;color:#15803d}
+
+.sec-label{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:#aaa;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::after{content:'';flex:1;height:1px;background:#eeeeea}
+
+/* ─── Skills ─── */
+.skills-card{background:#fff;border-radius:12px;border:1px solid #e8e8e4;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.sk-row{display:flex;align-items:flex-start;gap:1rem;padding:.55rem 0;border-bottom:1px solid #f2f2ee}
+.sk-row:last-child{border-bottom:none;padding-bottom:0}
+.sk-row:first-child{padding-top:0}
+.sk-name{font-size:.78rem;color:#888;min-width:105px;flex-shrink:0;padding-top:.25rem}
+.pills{display:flex;flex-wrap:wrap;gap:.3rem}
+.pill{font-size:.66rem;font-family:'JetBrains Mono',monospace;padding:.18rem .55rem;border-radius:4px;border:1px solid #e8e8e4;color:#555;background:#fafaf8}
+
+/* ─── Projects ─── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.5rem}
+.proj-card{background:#fff;border-radius:12px;border:1px solid #e8e8e4;padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .15s}
+.proj-card:hover{border-color:#c0c0bb;box-shadow:0 4px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
+.proj-wide{grid-column:1/-1}
+.proj-type{font-size:.62rem;font-family:'JetBrains Mono',monospace;padding:.16rem .5rem;border-radius:3px;display:inline-block;font-weight:400;margin-bottom:.1rem}
+.pt1{background:#fff0f0;color:#b91c1c}
+.pt2{background:#f0f9ff;color:#0369a1}
+.pt3{background:#f0fdf4;color:#15803d}
+.proj-name{font-size:.9rem;font-weight:500;color:#1c1c1c;letter-spacing:-.01em}
+.proj-desc{font-size:.76rem;color:#888;line-height:1.65;flex:1}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.28rem;padding-top:.6rem;border-top:1px solid #f0f0ec;margin-top:auto}
+.ptag{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:#aaa;border:1px solid #ececea;padding:.1rem .38rem;border-radius:3px}
+.proj-arrow{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:#ccc;margin-top:.4rem;text-align:right}
+.proj-card:hover .proj-arrow{color:#b91c1c}
+
+/* ─── Contact ─── */
+.contact-card{background:#fff;border-radius:12px;border:1px solid #e8e8e4;overflow:hidden}
+.c-row{display:flex;align-items:center;gap:1rem;padding:.8rem 1.25rem;border-bottom:1px solid #f2f2ee}
+.c-row:last-child{border-bottom:none}
+.c-icon{width:30px;height:30px;border-radius:7px;background:#f5f5f2;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-family:'JetBrains Mono',monospace;flex-shrink:0;color:#777;border:1px solid #eeeee9}
+.c-label{font-size:.68rem;font-family:'JetBrains Mono',monospace;color:#bbb;min-width:50px}
+.c-val{font-size:.82rem;color:#1c1c1c;text-decoration:none}
+.c-val:hover{color:#b91c1c}
+
+/* ─── Certificate Grid ─── */
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.5rem}
+.cert-card{background:#fff;border-radius:12px;border:1px solid #e8e8e4;padding:1.2rem;display:flex;flex-direction:column;gap:.45rem;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .15s}
+.cert-card:hover{border-color:#c0c0bb;box-shadow:0 4px 18px rgba(0,0,0,.07);transform:translateY(-2px)}
+.cert-issuer{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:#aaa;display:flex;align-items:center;gap:.35rem}
+.cert-issuer::before{content:'';width:6px;height:6px;border-radius:50%;background:#f0c040;flex-shrink:0}
+.cert-name{font-size:.88rem;font-weight:500;color:#1c1c1c;letter-spacing:-.01em;line-height:1.35}
+.cert-level{font-size:.62rem;font-family:'JetBrains Mono',monospace;padding:.14rem .45rem;border-radius:3px;display:inline-block;margin-top:.1rem}
+.lv-basic{background:#f0fdf4;color:#15803d}
+.lv-intermediate{background:#f0f9ff;color:#0369a1}
+.lv-advanced{background:#fff0f0;color:#b91c1c}
+.cert-arrow{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:#ccc;margin-top:auto;padding-top:.5rem;text-align:right}
+.cert-card:hover .cert-arrow{color:#b91c1c}
+
+/* ─── Modal ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .22s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:580px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.18);transform:translateY(16px) scale(.98);transition:transform .22s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-header{padding:1.4rem 1.5rem 1rem;border-bottom:1px solid #f0f0ec;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.modal-badge{font-size:.62rem;font-family:'JetBrains Mono',monospace;padding:.16rem .5rem;border-radius:3px;display:inline-block;margin-bottom:.5rem}
+.modal-title{font-size:1.15rem;font-weight:500;letter-spacing:-.02em;color:#1c1c1c}
+.modal-close{width:30px;height:30px;border-radius:7px;border:1px solid #e8e8e4;background:#fafaf8;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:#888;flex-shrink:0;transition:background .15s,color .15s}
+.modal-close:hover{background:#f0f0ec;color:#1c1c1c}
+.modal-preview{width:100%;background:#f5f5f2;position:relative;overflow:hidden}
+.modal-preview img{width:100%;display:block;object-fit:contain;max-height:380px}
+.preview-placeholder{width:100%;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#bbb}
+.preview-placeholder span{font-size:.72rem;font-family:'JetBrains Mono',monospace}
+.modal-body{padding:1.25rem 1.5rem}
+.modal-desc{font-size:.82rem;color:#666;line-height:1.75;margin-bottom:1.1rem}
+.modal-stack-label{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:#aaa;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.45rem}
+.modal-stack{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1.25rem}
+.modal-stack .ptag{font-size:.68rem;padding:.18rem .5rem}
+.modal-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.btn-demo{display:inline-flex;align-items:center;gap:.45rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;padding:.55rem 1.1rem;border-radius:7px;background:#1c1c1c;color:#fff;text-decoration:none;transition:background .15s}
+.btn-demo:hover{background:#333}
+.btn-demo svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-placeholder{display:inline-flex;align-items:center;gap:.45rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;padding:.55rem 1.1rem;border-radius:7px;border:1px solid #e8e8e4;color:#aaa;background:#fafaf8}
+
+/* cert modal */
+.cert-img-wrap{width:100%;background:#fafaf8;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;justify-content:center;min-height:180px}
+.cert-img-wrap img{width:100%;display:block;object-fit:contain;max-height:420px}
+.cert-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.cert-meta-item{font-size:.72rem;font-family:'JetBrains Mono',monospace;color:#888;display:flex;align-items:center;gap:.3rem}
+
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="tab-nav">
+    <div class="tab-inner">
+      <button class="tab-btn active" onclick="switchTab('portfolio',this)">Portfolio</button>
+      <button class="tab-btn" onclick="switchTab('certificates',this)">Certificates</button>
+    </div>
+  </div>
+
+  <div class="tab-pane active" id="tab-portfolio">
+
+    <div class="hero">
+      <div class="avatar">TY</div>
+      <div>
+        <div class="hero-name">TOEY</div>
+        <div class="hero-sub">web · iot · mobile</div>
+        <div class="tag-row">
+          <span class="tag t1">Embedded / IoT</span>
+          <span class="tag t2">Web Dev</span>
+          <span class="tag t3">Mobile App</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">ผลงาน</div>
+    <div class="proj-grid">
+      <div class="proj-card" onclick="openProjModal('MeowBeautyShop')">
+        <span class="proj-type pt3">Mobile</span>
+        <div class="proj-name">Meow Beauty Shop</div>
+        <div class="proj-desc">แอพพลิเคชั่นขายเครื่องสำอางค์มีระบบ login และ catalog สินค้า</div>
+        <div class="proj-stack"><span class="ptag">Firebase Auth</span><span class="ptag">Firestore</span><span class="ptag">Flutter</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+       <div class="proj-card" onclick="openProjModal('smartparking')">
+        <span class="proj-type pt1">iot</span>
+        <div class="proj-name">smartparking</div>
+        <div class="proj-desc">ที่จอดรถอัจฉริยะ</div>
+        <div class="proj-stack"><span class="ptag">Firebase Auth</span><span class="ptag">Firestore</span><span class="ptag">HTML</span></div>
+        <div class="proj-arrow">ดูเพิ่มเติม →</div>
+      </div>
+    </div>
+    
+    <div class="sec-label">ทักษะ</div>
+    <div class="skills-card">
+      <div class="sk-row">
+        <div class="sk-name">Embedded / IoT</div>
+        <div class="pills"><span class="pill">ESP32</span><span class="pill">NETPIE MQTT</span><span class="pill">PlatformIO</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-name">Web</div>
+        <div class="pills"><span class="pill">HTML/CSS/JS</span><span class="pill">Firebase</span><span class="pill">Firestore</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-name">Mobile</div>
+        <div class="pills"><span class="pill">Flutter</span><span class="pill">Firebase RTDB</span><span class="pill">Telegram Bot</span><span class="pill">LINE Notify</span></div>
+      </div>
+    </div>
+
+    <div class="sec-label">ติดต่อ</div>
+    <div class="contact-card">
+      <div class="c-row"><div class="c-icon">GH</div><span class="c-label">GitHub</span><a href="https://github.com/ToeyYanisa" target="_blank" class="c-val">github.com/ToeyYanisa</a></div>
+      <div class="c-row"><div class="c-icon">@</div><span class="c-label">Email</span><a href="toeyynss@gmail.com" class="c-val">toeyynss@gmail.com</a></div>
+      <div class="c-row"><div class="c-icon">P</div><span class="c-label">Phone</span><a href="0858463979" target="_blank" class="c-val">0858463979</a></div>
+    </div>
+
+  </div>
+
+  <div class="tab-pane" id="tab-certificates">
+
+    <div class="hero">
+      <div class="avatar" style="background:#b91c1c;font-size:.85rem;letter-spacing:-.03em">CERT</div>
+      <div>
+        <div class="hero-name">Certificates</div>
+        <div class="hero-sub">hackerrank — verified skills</div>
+        <div class="tag-row">
+          <span class="tag t3">1 × Basic</span>
+          <span class="tag t2">3 × Intermediate</span>
+          <span class="tag t1">1 × Advanced</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">ใบประกาศ</div>
+    <div class="cert-grid">
+      <div class="cert-card" onclick="openCertModal('sql-int')">
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-name">SQL</div>
+        <span class="cert-level lv-intermediate">Intermediate</span>
+        <div class="cert-arrow">ดูใบ →</div>
+      </div>
+      <div class="cert-card" onclick="openCertModal('css-basic')">
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-name">CSS</div>
+        <span class="cert-level lv-basic">Basic</span>
+        <div class="cert-arrow">ดูใบ →</div>
+      </div>
+      
+      <div class="cert-card" onclick="openCertModal('restapi-int')">
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-name">Rest API</div>
+        <span class="cert-level lv-intermediate">Intermediate</span>
+        <div class="cert-arrow">ดูใบ →</div>
+      </div>
+      <div class="cert-card" onclick="openCertModal('js-int')">
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-name">JavaScript</div>
+        <span class="cert-level lv-intermediate">Intermediate</span>
+        <div class="cert-arrow">ดูใบ →</div>
+      </div>
+      <div class="cert-card" onclick="openCertModal('sql-adv')">
+        <div class="cert-issuer">HackerRank</div>
+        <div class="cert-name">SQL</div>
+        <span class="cert-level lv-advanced">Advanced</span>
+        <div class="cert-arrow">ดูใบ →</div>
+      </div>
+      
+    </div>
+
+  </div>
+
+</div><div class="modal-overlay" id="proj-overlay" onclick="handleOverlay(event,'proj-overlay')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-badge" id="pm-badge"></div><div class="modal-title" id="pm-title"></div></div>
+      <button class="modal-close" onclick="closeModal('proj-overlay')">✕</button>
+    </div>
+    <div class="modal-preview" id="pm-preview"></div>
+    <div class="modal-body">
+      <p class="modal-desc" id="pm-desc"></p>
+      <div class="modal-stack-label">tech stack</div>
+      <div class="modal-stack" id="pm-stack"></div>
+      <div class="modal-actions" id="pm-actions"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cert-overlay" onclick="handleOverlay(event,'cert-overlay')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-badge" id="cm-badge"></div><div class="modal-title" id="cm-title"></div></div>
+      <button class="modal-close" onclick="closeModal('cert-overlay')">✕</button>
+    </div>
+    <div class="cert-img-wrap" id="cm-img"></div>
+    <div class="modal-body">
+      <div class="cert-meta" id="cm-meta"></div>
+      <div class="modal-actions" id="cm-actions"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── Tab ─── */
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ─── Projects ─── */
+const projects = {
+  MeowBeautyShop: {
+    badge:'Flutter', bc:'pt2',
+    title:'Meow Beauty Shop',
+    desc:'แอพพลิเคชั่นขายเครื่องสำอางค์ มีระบบ login สำหรับผู้ใช้และ admin พร้อม catalog สินค้าที่ดึงข้อมูลจาก Firestore แบบ realtime',
+    stack:['Firebase Auth','Firestore','Firebase Hosting','HTML/CSS/JS'],
+    demo: 'https://meaow-app.web.app/', 
+    img: 'meow1.png' 
+  },
+  smartparking: {
+    badge:'IoT + WEB', bc:'pt1',
+    title:'Smart parking',
+    desc:'ระบบ Smart parking ด้วย ESP32 ตรวจจับรถเข้าออกและแสดงผลผ่าน เว็บแบบrealtime',
+    stack:['ESP32','HTML','Firebase RTDB'],
+    demo: 'https://parking-system-ecru.vercel.app/',
+    img: 'parking.jpg'
+  }
+};
+
+const bColor = {pt1:'#b91c1c',pt2:'#0369a1',pt3:'#15803d'};
+const bBg    = {pt1:'#fff0f0',pt2:'#f0f9ff',pt3:'#f0fdf4'};
+
+function openProjModal(id) {
+  const p = projects[id];
+  const b = document.getElementById('pm-badge');
+  b.textContent = p.badge; b.style.background = bBg[p.bc]; b.style.color = bColor[p.bc];
+  document.getElementById('pm-title').textContent = p.title;
+  document.getElementById('pm-desc').textContent = p.desc;
+  document.getElementById('pm-stack').innerHTML = p.stack.map(s=>`<span class="ptag">${s}</span>`).join('');
+  const prev = document.getElementById('pm-preview');
+  prev.innerHTML = p.img
+    ? `<img src="${p.img}" alt="${p.title}">`
+    : `<div class="preview-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg><span>ยังไม่มีรูป / screenshot</span></div>`;
+  document.getElementById('pm-actions').innerHTML = p.demo
+    ? `<a href="${p.demo}" target="_blank" rel="noopener" class="btn-demo"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>เปิด Demo</a>`
+    : `<span class="btn-placeholder">Demo ยังไม่พร้อม</span>`;
+  openOverlay('proj-overlay');
+}
+
+/* ─── Certificates ─── */
+const certs = {
+  'sql-int':     {name:'SQL Certificate',        level:'Intermediate', lc:'lv-intermediate', img: 'sqlinter.jpg'},
+  'css-basic':   {name:'CSS Certificate',        level:'Basic',        lc:'lv-basic',        img: 'css basic.jpg'},
+  'restapi-int': {name:'Rest API Certificate',   level:'Intermediate', lc:'lv-intermediate', img: 'rest_api.jpg'},
+  'js-int':      {name:'JavaScript Certificate', level:'Intermediate', lc:'lv-intermediate', img: 'java.png'},
+  'sql-adv':     {name:'SQL Certificate',        level:'Advanced',     lc:'lv-advanced',     img: 'sqladvanced.jpg'},
+};
+
+const lvStyle = {
+  'lv-basic':       {bg:'#f0fdf4',color:'#15803d'},
+  'lv-intermediate':{bg:'#f0f9ff',color:'#0369a1'},
+  'lv-advanced':    {bg:'#fff0f0',color:'#b91c1c'},
+};
+
+function openCertModal(id) {
+  const c = certs[id];
+  const b = document.getElementById('cm-badge');
+  b.textContent = 'HackerRank'; b.style.background = '#fdf6e3'; b.style.color = '#92600a';
+  document.getElementById('cm-title').textContent = c.name;
+
+  const imgW = document.getElementById('cm-img');
+  imgW.innerHTML = c.img
+    ? `<img src="${c.img}" alt="${c.name}">`
+    : `<div class="preview-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ddd" stroke-width="1.2"><rect x="2" y="3" width="20" height="16" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="11" r="3"/></svg><span>ยังไม่มีรูปใบ Certificate</span></div>`;
+
+  const lv = lvStyle[c.lc];
+  document.getElementById('cm-meta').innerHTML =
+    `<span class="cert-meta-item">⭐ HackerRank</span>
+     <span style="color:#e8e8e4">·</span>
+     <span class="cert-level ${c.lc}">${c.level}</span>`;
+
+  document.getElementById('cm-actions').innerHTML = ``;
+  openOverlay('cert-overlay');
+}
+
+function openOverlay(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function handleOverlay(e,id){ if(e.target===document.getElementById(id)) closeModal(id); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal('proj-overlay'); closeModal('cert-overlay'); } });
+</script>
+</body>
+</html>
